@@ -1,6 +1,6 @@
-# Template Angular
+# App Auditoria
 
-Template de projeto frontend Angular, definido e mantido pela Seção de Padronização e Arquitetura de Software - SEPAS.
+Aplicação demonstrativa: Angular/Spring Boot com Hibernate Envers - Auditoria
 
 ## Pré-requisitos
 
@@ -30,22 +30,11 @@ git --version
 
 ## Passo a passo
 
-1 - No GitLab, pressione o botão [New Project](https://gitlab.stj.jus.br/projects/new)
-
-2 - Selecione Aba "Import project"
-
-3 - Pressione o botão "Repo by URL"
-
-4 - No campo Git repository URL, coloque:
-
-> https://gitlab.stj.jus.br/cdes/templates/angular.git
-
-5 - Prencha os outros campos e pressione "Create project"
 
 6 - Clone seu novo projeto para sua máquina
 * a) Na pasta que servirá de worskpace, execute na linha de comando:
 ```bash
-git clone https://gitlab.stj.jus.br/NOME_GRUPO/NOME_PROJETO 
+git clone https://github.com/DanSilva41/app-audit-ui.git 
 ```
 * c) Entre na pasta criada e execute na linha de comando para instalar as dependências:
 ```bash
