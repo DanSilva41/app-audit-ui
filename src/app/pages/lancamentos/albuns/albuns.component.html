@@ -1,0 +1,61 @@
+<div class="content">
+  <div class="card mt-2 shadow p-3">
+    <h2 class="text-center">
+      <strong>
+        Lançar novo Álbum
+      </strong>
+    </h2>
+    <hr/>
+
+    <form [formGroup]="formAlbum" (ngSubmit)="lancarAlbum()">
+      <div class="row">
+        <div class="col-6">
+          <div class="card shadow p-3">
+            <h2 class="text-center">
+              <strong>
+                Novo Álbum
+              </strong>
+            </h2>
+            <div class="row mt-2" style="margin-bottom: 1.9rem !important;">
+              <div class="col">
+              <span class="ui-float-label">
+                <input pInputText class="w-100" formControlName="titulo" maxlength="80" ngDefaultControl>
+                <label>Título: {{ formAlbum?.get('titulo') | identifyInputRequired }}</label>
+              </span>
+              </div>
+              <div class="col">
+              <span class="ui-float-label">
+                <input pInputText class="w-100" formControlName="autor" maxlength="60" ngDefaultControl>
+                <label>Autor: {{ formAlbum?.get('autor') | identifyInputRequired }} </label>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <p-listbox [options]="listaProdutores" formControlName="produtor" [multiple]="true" [checkbox]="true"
+                     [filter]="true" optionLabel="label">
+            <p-header>
+              Produtores {{ formAlbum?.get('produtor') | identifyInputRequired }}
+            </p-header>
+          </p-listbox>
+        </div>
+        <div class="col">
+          <p-listbox [options]="listaMusicas" formControlName="musicas" [multiple]="true" [checkbox]="true"
+                     [filter]="true"  optionLabel="label">
+            <p-header>
+              Músicas {{ formAlbum?.get('musicas') | identifyInputRequired }}
+            </p-header>
+          </p-listbox>
+        </div>
+      </div>
+      <div class="float-right mt-4">
+        <button pButton type="button" icon="pi pi-times" iconPos="left" label="Limpar"
+                class="ui-button-secondary mr-2" (click)="formAlbum.reset()"></button>
+        <button
+          pButton icon="pi pi-check" type="submit" iconPos="left" label="Pesquisar"
+          [disabled]="formAlbum.invalid"></button>
+      </div>
+    </form>
+  </div>
+</div>

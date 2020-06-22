@@ -65,8 +65,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        this.notificacaoService.notify('error', 'Autenticação', error.message);
-        this.msgs.push({ severity: 'error', summary: 'Erro', detail: 'Usuários e/ou senha incorretos!' });
+        this.notificacaoService.notify('error', 'Autenticação', 'Usuários e/ou senha incorretos!');
       });
   }
 

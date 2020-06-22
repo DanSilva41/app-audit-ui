@@ -26,7 +26,7 @@ export class AuthService {
     private router: Router,
     private tokenService: TokenService
   ) {
-    this.oauthTokenUrl = `${environment.apiSeguranca}/oauth/token`;
+    this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
     this.decodificarToken();
   }
 

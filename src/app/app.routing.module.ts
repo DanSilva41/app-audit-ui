@@ -6,14 +6,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './core/components/login/login.component';
 
 const appRoutes: Routes = [
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'lancamentos', loadChildren: './pages/lancamentos/lancamentos.module#LancamentosModule', canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "app-audit-ui": {
+    "template-angular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
