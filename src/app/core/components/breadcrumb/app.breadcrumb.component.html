@@ -1,0 +1,39 @@
+<div class="layout-breadcrumb">
+    <ul style="float: left; padding-top:2px; width: 30px">
+        <li>
+            <a routerLink="">
+                <i class="material-icons">home</i>
+            </a>
+        </li>
+
+    </ul>
+    <!--
+        <li>|</li>
+        <li>
+            <a routerLink="/usuarios">Usuários</a>
+        </li>
+        <li>|</li>
+        <li>
+            <a routerLink="/permissoes">Permissões</a>
+        </li>
+        <li>|</li>
+        <li>
+            <a routerLink="/funcionalidades">Funcionalidades</a>
+        </li>
+
+        <ng-template ngFor let-item let-last="last" [ngForOf]="items">
+            <li>
+                <a [routerLink]="item.routerLink" *ngIf="item.routerLink">{{item.label}}</a>
+                <ng-container *ngIf="!item.routerLink">{{item.label}}</ng-container>
+            </li>
+            <li *ngIf="!last">/</li>
+        </ng-template>
+    </ul>
+        -->
+
+    <div class="layout-breadcrumb-options" style="float: left">
+        <a routerLink="/usuarios" routerLinkActive="router-link-active" title="Usuários" style="width:100px">Usuários</a>
+        <a routerLink="/permissoes" routerLinkActive="router-link-active" title="Permissões" style="width:100px">Permissões</a>
+        <a routerLink="/funcionalidades" routerLinkActive="router-link-active" title="Funcionalidades" style="width:150px">Funcionalidades</a>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://justica-dev.stj.jus.br",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

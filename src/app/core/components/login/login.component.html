@@ -1,0 +1,61 @@
+<p-growl [(value)]="msgs" [life]="6000" [immutable]="false"></p-growl>
+
+<div class="card login-panel ui-fluid">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="logo_login"></div>
+    </div>
+
+    <div class="ui-g-12 text-center">
+      <button type="button" class="btn btn-secondary" (click)="tabelaUsuariosCadastrados.toggle($event)">
+        Usuários cadastrados
+      </button>
+    </div>
+
+    <p-overlayPanel #tabelaUsuariosCadastrados id="overlayPanel-usuarios-cadastrados" [showCloseIcon]="true" [dismissable]="false">
+      <table class="table border rounded-pill">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Usuário</th>
+          <th scope="col">Senha</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>test1</td>
+          <td>test1</td>
+        </tr>
+        <tr>
+          <td>test2</td>
+          <td>test2</td>
+        </tr>
+        </tbody>
+      </table>
+    </p-overlayPanel>
+    <form [formGroup]="loginFormGroup" role="form" (ngSubmit)="fazerLogin($event)">
+
+      <div class="ui-g-12">
+        <span class="ui-float-label">
+          <input pInputText type="text" formControlName="usuarioInformado" id="usuario" class="ui-inputtext"
+                 placeholder="Usuário">
+        </span>
+      </div>
+
+      <div class="ui-g-12">
+        <span class="ui-float-label">
+          <input pInputText type="password" formControlName="senhaInformada" id="senha" required class="ui-inputtext"
+                 placeholder="Senha">
+        </span>
+      </div>
+
+      <div class="ui-g-12">
+        <button type="submit" [disabled]="!loginFormGroup.valid"
+                class="teal-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+          <span class="ui-button-icon-left ui-c ui-icon-person"></span>
+          <span class="ui-button-text ui-c" style="padding-left: 0em;">Entrar</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

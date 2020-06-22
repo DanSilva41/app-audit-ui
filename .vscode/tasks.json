@@ -1,0 +1,226 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "powershell.exe",
+                "args": [
+                    "/c"
+                ]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "label": "NPM Install",
+            "type": "shell",
+            "command": [
+                "npm install"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "NPM CI on Docker",
+            "type": "shell",
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "npm ci"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "NPM Install on Docker",
+            "type": "shell",
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "npm install"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "Angular Test",
+            "type": "shell",
+            "command": [
+                "ng test --browsers=Chrome"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {                
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,                
+            }
+        },
+        {
+            "label": "Angular Test on Docker",
+            "type": "shell",
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "bash -c 'ng test --browsers=ChromeNoSandbox --watch=false && echo error code: $?'"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true
+            }
+        },        
+        {
+            "label": "NG Serve DEV",
+            "type": "shell",
+            "command": [
+                "ng serve --host 0.0.0.0 --port 4201"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "NG Serve on Docker",
+            "type": "shell",            
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "-p 4200:4200",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "ng serve --host 0.0.0.0"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "NG Build DEV on Docker",
+            "type": "shell",
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "ng build"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "NG build HOM on docker",
+            "type": "shell",
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "ng build --configuration=hom"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        }, 
+        {
+            "label": "NG build PROD on docker",
+            "type": "shell",
+            "command": [
+                "docker rm -f build-app;",
+                "docker run -it --rm",
+                "--name=build-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "ng build --prod --configuration=production"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },              
+        {
+            "label": "bash on docker",
+            "type": "shell",            
+            "command": [
+                "docker rm -f bash-app;",
+                "docker run -it --rm",
+                "-p4200:4200",
+                "--name=bash-app",
+                "-v ${workspaceFolder}:/usr/src/app",
+                "nexus.stj.jus.br:5000/stj-cdes/angular-build:stable",
+                "bash"
+            ],
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": false
+            }
+        }
+    ]
+}

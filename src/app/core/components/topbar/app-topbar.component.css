@@ -1,0 +1,14 @@
+.titulo-topbar {
+    font-family: museo-sans, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: 36px;
+    font-size: 28px;
+    margin-right: -2000px;
+    position: relative;
+    left: 40px;
+    top: 11px;
+}

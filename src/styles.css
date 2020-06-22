@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+.layout-container .topbar .logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: 160px;
+    height: 61px;
+    background-size: 160px 61px;
+  }
+
+  .layout-container .topbar .topbar-left {
+    padding-top: 7px;
+    padding-left: 40px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  body .ui-radiobutton-label {
+    margin-top: 0.5em;
+  }

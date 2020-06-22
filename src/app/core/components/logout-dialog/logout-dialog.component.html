@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Atenção!</h1>
+<div mat-dialog-content>
+  <p>Deseja realmente sair do sistema?</p>
+</div>
+<div mat-dialog-actions style="margin-left:250px; margin-top:50px">
+  <button class="green-btn" icon="ui-icon-check" pButton pTooltip="Confirmar" tooltipPosition="top" [mat-dialog-close]="false"></button>
+  <button class="red-btn" icon="ui-icon-clear" pButton pTooltip="Cancelar" tooltipPosition="top" [mat-dialog-close]="true"></button>
+</div>

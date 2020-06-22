@@ -1,0 +1,15 @@
+.ui-menu .ui-menu-parent .ui-menu-child {
+    width: 13.5em;
+}
+
+body .ui-state-active {
+    background-color: #cecece;
+}
+
+body .ui-menubar .ui-menuitem-link .ui-menuitem-text {
+    vertical-align: bottom;
+}
+
+/* body .ui-state-active .fa, body .ui-state-highlight .fa {
+    color: #757575;
+  } */

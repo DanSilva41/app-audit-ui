@@ -1,0 +1,4 @@
+include:
+  - project: 'the-solution/devops/templates/template-gitlab-ci'
+    ref: master
+    file: '/Angular.gitlab-ci.yml'
