@@ -2,15 +2,16 @@
   <div class="card mt-2 shadow p-3">
     <h2 class="text-center">
       <strong>
-        Lançar novo Álbum
+        Álbuns
       </strong>
     </h2>
     <hr/>
 
-    <form [formGroup]="formAlbum" (ngSubmit)="lancarAlbum()">
-      <div class="row">
-        <div class="col-6">
-          <div class="card shadow p-3">
+
+    <div class="row">
+      <div class="col card">
+        <form [formGroup]="formAlbum" (ngSubmit)="lancarAlbum()">
+          <div class="col">
             <h2 class="text-center">
               <strong>
                 Novo Álbum
@@ -31,31 +32,54 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <p-listbox [options]="listaProdutores" formControlName="produtor" [multiple]="true" [checkbox]="true"
-                     [filter]="true" optionLabel="label">
-            <p-header>
-              Produtores {{ formAlbum?.get('produtor') | identifyInputRequired }}
-            </p-header>
-          </p-listbox>
-        </div>
-        <div class="col">
-          <p-listbox [options]="listaMusicas" formControlName="musicas" [multiple]="true" [checkbox]="true"
-                     [filter]="true"  optionLabel="label">
-            <p-header>
-              Músicas {{ formAlbum?.get('musicas') | identifyInputRequired }}
-            </p-header>
-          </p-listbox>
-        </div>
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <p-listbox [options]="listaProdutores" formControlName="produtor" [multiple]="true" [checkbox]="true"
+                           [filter]="true" optionLabel="nome">
+                  <p-header>
+                    Produtores {{ formAlbum?.get('produtor') | identifyInputRequired }}
+                  </p-header>
+                </p-listbox>
+              </div>
+              <div class="col-6">
+                <p-listbox [options]="listaMusicas" formControlName="musicas" [multiple]="true" [checkbox]="true"
+                           [filter]="true" optionLabel="titulo">
+                  <p-header>
+                    Músicas {{ formAlbum?.get('musicas') | identifyInputRequired }}
+                  </p-header>
+                </p-listbox>
+              </div>
+            </div>
+          </div>
+          <div class="float-right mt-4">
+            <button pButton type="button" icon="pi pi-times" iconPos="left" label="Limpar"
+                    class="ui-button-secondary mr-2" (click)="formAlbum.reset()"></button>
+            <button
+              pButton icon="pi pi-check" type="submit" iconPos="left" label="Salvar"
+              [disabled]="formAlbum.invalid"></button>
+          </div>
+        </form>
       </div>
-      <div class="float-right mt-4">
-        <button pButton type="button" icon="pi pi-times" iconPos="left" label="Limpar"
-                class="ui-button-secondary mr-2" (click)="formAlbum.reset()"></button>
-        <button
-          pButton icon="pi pi-check" type="submit" iconPos="left" label="Pesquisar"
-          [disabled]="formAlbum.invalid"></button>
+      <div class="col-4">
+        <p-table [value]="listaAlbuns" [paginator]="true" [rows]="7">
+          <ng-template pTemplate="caption">
+            Lista de álbuns
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr class="text-center">
+              <th class="font-weight-bold">Título</th>
+              <th class="font-weight-bold">Autor</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-album>
+            <tr>
+              <td>{{album.titulo}}</td>
+              <td>{{album.autor}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
-    </form>
+    </div>
   </div>
 </div>

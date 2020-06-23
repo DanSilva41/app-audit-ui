@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ObjectList } from '../../../shared/objects/object-list';
 import { ColetaneaService } from '../../../shared/service/coletanea/coletanea.service';
 import { ProdutorDTO } from '../../../dto/produtor.dto';
 import { ListUtil } from '../../../shared/objects/list-util';
@@ -17,9 +16,9 @@ import { ProducaoService } from '../../../shared/service/producao/producao.servi
 })
 export class AlbunsComponent implements OnInit {
 
-  listaProdutores: Array<ObjectList>;
-  listaAlbuns: Array<ObjectList>;
-  listaMusicas: Array<ObjectList>;
+  listaProdutores: Array<ProdutorDTO>;
+  listaAlbuns: Array<AlbumDTO>;
+  listaMusicas: Array<MusicaDTO>;
 
   formAlbum: FormGroup;
 
@@ -54,7 +53,7 @@ export class AlbunsComponent implements OnInit {
     if (ListUtil.isListaInvalidaOuVazia(this.listaProdutores)) {
       return this.coletaneaService.buscarProdutores().toPromise()
         .then((produtores: Array<ProdutorDTO>) => {
-          this.listaProdutores = ListUtil.transformListToObjectList(produtores, new ProdutorDTO());
+          this.listaProdutores = produtores;
         });
     }
   }
@@ -63,7 +62,7 @@ export class AlbunsComponent implements OnInit {
     if (ListUtil.isListaInvalidaOuVazia(this.listaAlbuns)) {
       return this.coletaneaService.buscarAlbuns().toPromise()
         .then((albuns: Array<AlbumDTO>) => {
-          this.listaAlbuns = ListUtil.transformListToObjectList(albuns, new AlbumDTO());
+          this.listaAlbuns = albuns;
         });
     }
   }
@@ -72,7 +71,7 @@ export class AlbunsComponent implements OnInit {
     if (ListUtil.isListaInvalidaOuVazia(this.listaMusicas)) {
       return this.coletaneaService.buscarMusicas().toPromise()
         .then((musicas: Array<MusicaDTO>) => {
-          this.listaMusicas = ListUtil.transformListToObjectList(musicas, new MusicaDTO());
+          this.listaMusicas = musicas;
         });
     }
   }
@@ -80,8 +79,8 @@ export class AlbunsComponent implements OnInit {
   lancarAlbum() {
     const titulo: string = this.formAlbum.get('titulo').value;
     const autor: string = this.formAlbum.get('autor').value;
-    const idProdutor: number = this.formAlbum.get('produtor').value.map(v => v.value)[0];
-    const musicas: Array<number> = this.formAlbum.get('musicas').value.map(v => v.value);
+    const idProdutor: number = this.formAlbum.get('produtor').value.map(v => v.id)[0];
+    const musicas: Array<number> = this.formAlbum.get('musicas').value.map(v => v.id);
 
     const lancamentoVM: LancamentoVM = new LancamentoVM();
     lancamentoVM.album = new AlbumDTO(undefined, titulo, autor);
@@ -90,7 +89,10 @@ export class AlbunsComponent implements OnInit {
 
     this.producaoService.lancarNovoAlbum(lancamentoVM).toPromise()
       .then((album: AlbumDTO) => {
-        console.log(album);
+        if (ListUtil.isListaInvalidaOuVazia(this.listaAlbuns)) {
+          this.listaAlbuns = new Array<AlbumDTO>();
+        }
+        this.listaAlbuns.push(album);
       });
   }
 

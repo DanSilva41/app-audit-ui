@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ColetaneaService } from '../../shared/service/coletanea/coletanea.service';
 import { ListboxModule } from 'primeng/listbox';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [AlbunsComponent],
@@ -21,6 +22,7 @@ import { ListboxModule } from 'primeng/listbox';
     InputTextareaModule,
     ButtonModule,
     ListboxModule,
+    TableModule,
     SharedModule,
     LancamentosRoutingModule
   ],
